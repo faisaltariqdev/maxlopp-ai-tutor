@@ -7,14 +7,12 @@ from urllib.error import URLError
 from urllib.parse import quote, unquote, urlparse
 from urllib.request import Request, urlopen
 
-from ddgs import DDGS
-from langchain.agents import create_agent
-from langchain.tools import tool
-from langchain_ollama import ChatOllama
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 GLOSSARY_PATH = Path(__file__).resolve().parents[1] / "data" / "glossary.json"
 MODEL = os.environ.get("OLLAMA_MODEL", "qwen3.5:0.8b")
+SOURCES = ("--glossary", "--web", "--model")
+MISSING = 3
 
 
 class GlossaryTerm(BaseModel):
@@ -27,20 +25,6 @@ class Glossary(BaseModel):
     title: str
     source: str
     terms: list[GlossaryTerm]
-
-
-class LookupTermInput(BaseModel):
-    """Arguments the agent sends when it looks up one glossary term."""
-
-    name: str = Field(
-        description="The AI glossary term to look up, for example RAG or Transformer."
-    )
-
-
-class SearchWebInput(BaseModel):
-    """Arguments the agent sends when the glossary has no entry."""
-
-    query: str = Field(description="The question to search for on the web.")
 
 
 def _glossary() -> Glossary:
@@ -92,20 +76,15 @@ def _aliases(term: str) -> set[str]:
     return aliases
 
 
-def _miss(name: str) -> str:
-    return f"No glossary entry matched {name!r}."
-
-
-@tool(args_schema=LookupTermInput)
-def lookup_term(name: str) -> str:
+def lookup_term(name: str) -> str | None:
     """Look up one AI glossary term by name and return its definition and source URL."""
     wanted = _candidates(name)
     if not wanted:
-        return _miss(name)
+        return None
     for term in _glossary().terms:
         if wanted & _aliases(term.term):
             return f"{term.term}: {term.definition}\nSource (glossary): {term.url}"
-    return _miss(name)
+    return None
 
 
 def _search_phrase(question: str) -> str:
@@ -119,6 +98,8 @@ def _search_phrase(question: str) -> str:
 
 
 def _web_hits(query: str) -> list[dict[str, str]]:
+    from ddgs import DDGS
+
     try:
         rows = DDGS(timeout=12).text(_search_phrase(query), max_results=5)
     except Exception:
@@ -189,28 +170,6 @@ def _from_web(question: str) -> str:
     return f"{text}\nSource (web): {hit['href']}"
 
 
-@tool(args_schema=SearchWebInput)
-def search_web(query: str) -> str:
-    """Search the web and return a short explanation plus the page URL."""
-    found = _from_web(query)
-    return found or "No web result found."
-
-
-def build_agent():
-    model = ChatOllama(model=MODEL, temperature=0)
-    return create_agent(
-        model=model,
-        tools=[lookup_term, search_web],
-        system_prompt=(
-            "You are Maxlopp, a beginner tutor. "
-            "Call lookup_term first. If it returns a definition, reply with only that text. "
-            "If the glossary misses, call search_web and reply with only that text. "
-            "If search_web finds nothing, answer from your own knowledge in one or two simple sentences. "
-            "Do not invent a URL."
-        ),
-    )
-
-
 def _message_text(message: object) -> str:
     content = getattr(message, "content", "")
     if isinstance(content, str):
@@ -241,42 +200,52 @@ def _clean_answer(text: str) -> str:
     return " ".join(" ".join(kept).split())
 
 
-def _web_from_agent(result: dict) -> str:
-    for message in result["messages"]:
-        if getattr(message, "type", None) != "tool":
-            continue
-        content = getattr(message, "content", "")
-        if isinstance(content, str) and "\nSource (web):" in content:
-            return content.strip()
-    return ""
-
-
 def _from_model(question: str) -> str:
-    result = build_agent().invoke(
-        {"messages": [{"role": "user", "content": question}]}
+    from langchain_ollama import ChatOllama
+
+    model = ChatOllama(
+        model=MODEL,
+        temperature=0,
+        reasoning=False,
+        num_predict=160,
+        keep_alive="30m",
     )
-    web = _web_from_agent(result)
-    if web:
-        return web
-    text = _clean_answer(_message_text(result["messages"][-1]))
-    if not text or text.startswith("No glossary entry matched"):
-        text = "I do not know this."
+    reply = model.invoke(
+        [
+            (
+                "system",
+                "You are Maxlopp, a beginner tutor. "
+                "Answer in one or two simple sentences from your own knowledge. "
+                "Do not include a URL.",
+            ),
+            ("human", question),
+        ]
+    )
+    text = _clean_answer(_message_text(reply)) or "I do not know this."
     return f"{text}\nSource (model knowledge): {MODEL}"
 
 
-def answer(question: str) -> str:
-    direct = lookup_term.invoke({"name": question})
-    if not direct.startswith("No glossary entry matched"):
-        return direct
-    web = _from_web(question)
-    if web:
-        return web
-    return _from_model(question)
+def answer(question: str, source: str = "--glossary") -> str | None:
+    if source == "--web":
+        return _from_web(question) or None
+    if source == "--model":
+        return _from_model(question)
+    return lookup_term(question)
 
 
 def main() -> None:
-    question = " ".join(sys.argv[1:]).strip() or "What is RAG?"
-    print(answer(question))
+    args = sys.argv[1:]
+    source = args.pop(0) if args and args[0] in SOURCES else "--glossary"
+    question = " ".join(args).strip() or "What is RAG?"
+    found = answer(question, source)
+    if found:
+        print(found)
+        return
+    if source == "--web":
+        print("No web result found.")
+    else:
+        print(f"{question!r} is not in the glossary. Run again with --web or --model.")
+    sys.exit(MISSING)
 
 
 if __name__ == "__main__":
