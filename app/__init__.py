@@ -1,0 +1,1 @@
+"""Maxlopp application package."""

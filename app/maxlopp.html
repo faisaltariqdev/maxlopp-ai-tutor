@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maxlopp — one AI term at a time</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #efe7f8;
+      --ink: #241833;
+      --muted: #4a4160;
+      --card: #fbf8ff;
+      --violet: #5728b0;
+      --violet-ink: #ffffff;
+      --violet-deep: #3c1a80;
+      --peach: #8c3e22;
+      --peach-bg: #f8e4d6;
+      --mint: #145c44;
+      --mint-bg: #d7f3e8;
+      --sun: #6b4a06;
+      --sun-bg: #f8e8b8;
+      --shadow: 10px 12px 22px rgba(92, 62, 140, 0.16), -7px -7px 16px rgba(255, 255, 255, 0.92);
+      --inset: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      --font: "Plus Jakarta Sans", sans-serif;
+      --display: "Bricolage Grotesque", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    button, a { font: inherit; }
+    button { cursor: pointer; }
+    :focus-visible {
+      outline: 3px solid var(--violet-deep);
+      outline-offset: 3px;
+    }
+    .sr {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .preview {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 16px 20px 0;
+    }
+    .preview p { margin: 0; color: var(--muted); font-size: 14px; }
+    .preview-switch { display: flex; gap: 8px; }
+    .preview button {
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 600;
+    }
+    .preview button[aria-pressed="true"] {
+      background: var(--violet);
+      color: var(--violet-ink);
+      box-shadow: 0 4px 0 var(--violet-deep);
+    }
+
+    #stage { padding: 20px 20px 48px; }
+    .shell { max-width: 1040px; margin: 0 auto; }
+    .top-side {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .phone-wrap { display: flex; justify-content: center; }
+    .phone {
+      width: min(390px, 100%);
+      background: var(--card);
+      border-radius: 36px;
+      box-shadow: var(--shadow), var(--inset);
+      padding: 18px 16px 22px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 22px;
+    }
+    .brand { margin: 0; font-family: var(--display); font-size: 28px; line-height: 1; letter-spacing: -0.03em; }
+    .tag { margin: 6px 0 0; color: var(--muted); }
+    .safe {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--mint-bg);
+      color: var(--mint);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .safe i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--mint);
+      display: block;
+    }
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+    .stat {
+      background: var(--card);
+      border-radius: 999px;
+      padding: 8px 12px;
+      box-shadow: var(--shadow), var(--inset);
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .stat.sun { background: var(--sun-bg); color: var(--sun); box-shadow: none; }
+    .stat.peach { background: var(--peach-bg); color: var(--peach); box-shadow: none; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr;
+      gap: 18px;
+    }
+    .stack { display: grid; gap: 16px; }
+    .clay {
+      background: var(--card);
+      border-radius: 28px;
+      box-shadow: var(--shadow), var(--inset);
+      padding: 22px;
+    }
+    .kicker {
+      margin: 0 0 6px;
+      color: var(--peach);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin: 0 0 12px;
+      font-family: var(--display);
+      font-size: 32px;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+    .source {
+      display: inline-block;
+      margin-bottom: 14px;
+      background: var(--mint-bg);
+      color: var(--mint);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: 999px;
+      padding: 6px 10px;
+    }
+    .stream {
+      margin: 0 0 14px;
+      font-size: 18px;
+      min-height: 4.5em;
+    }
+    .writing {
+      color: var(--violet);
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .dots { display: inline-flex; gap: 4px; margin-left: 6px; vertical-align: middle; }
+    .dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--violet);
+      animation: blink 1s infinite;
+    }
+    .dots span:nth-child(2) { animation-delay: 0.15s; }
+    .dots span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes blink { 50% { opacity: 0.25; } }
+    @media (prefers-reduced-motion: reduce) {
+      .dots span { animation: none; }
+    }
+    blockquote {
+      margin: 0 0 16px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: #f3ecfa;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .hitl h3 { margin: 0 0 6px; font-size: 18px; font-family: var(--display); }
+    .hitl p { margin: 0 0 14px; color: var(--muted); }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 16px;
+      min-height: 48px;
+      font-weight: 700;
+    }
+    .btn:disabled { cursor: not-allowed; opacity: 0.55; }
+    .btn-primary {
+      background: var(--violet);
+      color: var(--violet-ink);
+      box-shadow: 0 5px 0 var(--violet-deep);
+    }
+    .btn-primary:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 2px 0 var(--violet-deep); }
+    .btn-quiet {
+      background: #f3ecfa;
+      color: var(--ink);
+      box-shadow: var(--inset);
+    }
+    .done-note { margin: 0; font-weight: 700; color: var(--mint); }
+
+    .option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      margin-bottom: 8px;
+      border: 0;
+      border-radius: 18px;
+      background: #f3ecfa;
+      color: var(--ink);
+      padding: 12px 14px;
+      min-height: 48px;
+    }
+    .option[aria-pressed="true"] {
+      background: var(--violet);
+      color: white;
+    }
+    .option:disabled { cursor: not-allowed; }
+    .lock { margin: 0 0 12px; color: var(--muted); }
+    .feedback {
+      margin: 12px 0 0;
+      padding: 12px 14px;
+      border-radius: 18px;
+    }
+    .feedback.ok { background: var(--mint-bg); color: var(--mint); }
+    .feedback.no { background: var(--peach-bg); color: var(--peach); }
+
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .badge {
+      background: var(--sun-bg);
+      color: var(--sun);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .badge.wait { background: #f3ecfa; color: var(--muted); }
+
+    .level-num { font-family: var(--display); font-size: 40px; margin: 0; letter-spacing: -0.04em; }
+    .bar {
+      height: 14px;
+      border-radius: 999px;
+      background: #f3ecfa;
+      overflow: hidden;
+      margin: 10px 0 6px;
+    }
+    .bar span {
+      display: block;
+      height: 100%;
+      background: var(--violet);
+      border-radius: inherit;
+    }
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .pair .clay { padding: 16px; }
+    .pair strong { display: block; font-family: var(--display); font-size: 28px; }
+    .week { list-style: none; margin: 0; padding: 0; }
+    .week li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-top: 1px solid #eadff5;
+    }
+    h3.section { margin: 18px 0 8px; font-family: var(--display); font-size: 20px; }
+
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: 1fr; }
+      .preview { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="preview">
+    <p>Maxlopp preview. Sample lesson from the glossary.</p>
+    <div class="preview-switch" role="group" aria-label="Preview screen">
+      <button type="button" data-screen="desktop" aria-pressed="true">Desktop</button>
+      <button type="button" data-screen="phone" aria-pressed="false">Phone</button>
+      <button type="button" data-screen="progress" aria-pressed="false">Progress</button>
+    </div>
+  </div>
+  <main id="stage"></main>
+  <script>
+    const explanations = {
+      standard: "RAG lets a language model look up information before it writes an answer. It uses that source instead of relying only on what it memorized during training.",
+      simple: "The model looks something up first. Then it answers using what it found."
+    };
+    const sourceQuote = "A method that retrieves outside information and gives it to a language model before the model writes an answer.";
+    const choices = [
+      ["a", "It only uses what it memorized in training."],
+      ["b", "It looks up outside information first."],
+      ["c", "It deletes the question and starts over."]
+    ];
+
+    const state = {
+      screen: "desktop",
+      phase: "streaming",
+      explanation: "standard",
+      revealed: 0,
+      approved: false,
+      awardedApproval: false,
+      quiz: null,
+      feedbackRevealed: 0,
+      awardedQuiz: false,
+      xp: 200,
+      credits: 12,
+      streak: 4,
+      level: 2
+    };
+
+    let timer = null;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const stage = document.getElementById("stage");
+
+    function text() { return explanations[state.explanation]; }
+    function feedbackText() {
+      if (!state.quiz) return "";
+      return state.quiz === "b"
+        ? "Yes. RAG retrieves a source, then the model writes from that source."
+        : "Not quite. RAG looks up information first, then answers from it.";
+    }
+    function xpCap() { return 250; }
+    function level() { return state.xp >= 250 ? 3 : 2; }
+
+    function badges() {
+      return [
+        ["First term", true],
+        ["Source reader", state.approved],
+        ["4-day streak", true],
+        ["Quiz clear", state.quiz === "b"]
+      ];
+    }
+
+    function statPills() {
+      return `<div class="stats" aria-label="Your progress">
+        <span class="stat peach">${state.streak}-day streak</span>
+        <span class="stat sun">${state.xp} XP</span>
+        <span class="stat">${state.credits} credits</span>
+      </div>`;
+    }
+
+    function safeBadge() {
+      return `<span class="safe"><i aria-hidden="true"></i>Safe mode</span>`;
+    }
+
+    function header(compact) {
+      return `<header class="top">
+        <div>
+          <p class="brand">Maxlopp</p>
+          ${compact ? "" : `<p class="tag">One AI term at a time.</p>`}
+        </div>
+        <div class="top-side">
+          ${safeBadge()}
+          ${compact ? "" : statPills()}
+        </div>
+      </header>`;
+    }
+
+    function writing() {
+      const full = text();
+      if (state.revealed >= full.length) return "";
+      return `<p class="writing">Writing<span class="dots" aria-hidden="true"><span></span><span></span><span></span></span></p>`;
+    }
+
+    function lesson() {
+      const streaming = state.phase === "streaming" || state.phase === "simpler-streaming";
+      const shown = text().slice(0, state.revealed);
+      const actions = state.approved
+        ? `<p class="done-note">You approved this explanation.</p>`
+        : `<div class="actions">
+            <button class="btn btn-primary" type="button" data-act="approve" ${streaming ? "disabled" : ""}>Approve explanation</button>
+            <button class="btn btn-quiet" type="button" data-act="simpler" ${streaming || state.explanation === "simple" ? "disabled" : ""}>Simpler version</button>
+          </div>`;
+      return `<article class="clay">
+        <p class="kicker">Today</p>
+        <h2>RAG</h2>
+        <a class="source" href="https://hai.stanford.edu/ai-definitions/what-is-rag" target="_blank" rel="noopener noreferrer">Source · Stanford HAI</a>
+        <p class="stream" data-stream aria-live="polite">${shown}</p>
+        ${writing()}
+        <blockquote>Glossary: ${sourceQuote}</blockquote>
+        <section class="hitl clay" style="box-shadow:none;background:#f3ecfa">
+          <h3>Check before the quiz</h3>
+          <p>A person approves the explanation. The quiz stays closed until you do.</p>
+          ${actions}
+        </section>
+      </article>`;
+    }
+
+    function quiz() {
+      const locked = !state.approved;
+      const options = choices.map(([id, label]) => {
+        const pressed = state.quiz === id;
+        return `<button class="option" type="button" data-choice="${id}" aria-pressed="${pressed}" ${locked || state.quiz ? "disabled" : ""}>${label}</button>`;
+      }).join("");
+      let feedback = "";
+      if (state.quiz) {
+        const kind = state.quiz === "b" ? "ok" : "no";
+        const label = state.quiz === "b" ? "Correct" : "Try again next time";
+        feedback = `<p class="feedback ${kind}" data-feedback aria-live="polite"><strong>${label}.</strong> ${feedbackText().slice(0, state.feedbackRevealed)}</p>`;
+      }
+      return `<section class="clay">
+        <p class="kicker">Quiz</p>
+        <h2 style="font-size:26px">What does RAG do before answering?</h2>
+        ${locked ? `<p class="lock">Approve the explanation to start.</p>` : ""}
+        ${options}
+        ${feedback}
+      </section>`;
+    }
+
+    function badgeRow() {
+      const items = badges().filter(([, on]) => on).map(([name]) => `<span class="badge">${name}</span>`).join("");
+      return `<div class="badges" aria-label="Badges">${items}</div>`;
+    }
+
+    function desktop() {
+      return `<div class="shell">
+        ${header(false)}
+        <div class="grid">${lesson()}${quiz()}</div>
+        ${badgeRow()}
+      </div>`;
+    }
+
+    function phoneMain() {
+      return `<div class="phone-wrap"><div class="phone">
+        ${header(true)}
+        ${statPills()}
+        <div class="stack" style="margin-top:16px">${lesson()}${quiz()}${badgeRow()}</div>
+      </div></div>`;
+    }
+
+    function progress() {
+      const width = Math.min(100, Math.round((state.xp / xpCap()) * 100));
+      const badgeList = badges().map(([name, on]) => `<span class="badge ${on ? "" : "wait"}">${name}${on ? "" : " · not yet"}</span>`).join("");
+      const rag = state.quiz === "b" ? "Done" : "In progress";
+      return `<div class="phone-wrap"><div class="phone">
+        ${header(true)}
+        <p class="kicker">Progress</p>
+        <p class="level-num">Level ${level()}</p>
+        <div class="bar" role="meter" aria-valuemin="0" aria-valuemax="${xpCap()}" aria-valuenow="${state.xp}" aria-label="Experience points">
+          <span style="width:${width}%"></span>
+        </div>
+        <p>${state.xp} of ${xpCap()} XP</p>
+        <div class="pair">
+          <div class="clay"><span class="kicker">Streak</span><strong>${state.streak}</strong> days</div>
+          <div class="clay"><span class="kicker">Credits</span><strong>${state.credits}</strong> left</div>
+        </div>
+        <h3 class="section">Badges</h3>
+        <div class="badges">${badgeList}</div>
+        <h3 class="section">This week</h3>
+        <ul class="week">
+          <li><span>Fine-tuning</span><span>Done</span></li>
+          <li><span>Hallucination</span><span>Done</span></li>
+          <li><span>RAG</span><span>${rag}</span></li>
+        </ul>
+        <p class="tag">Safe mode keeps answers on the glossary.</p>
+      </div></div>`;
+    }
+
+    function render() {
+      const map = { desktop, phone: phoneMain, progress };
+      stage.innerHTML = map[state.screen]();
+      document.querySelectorAll(".preview button").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.screen === state.screen));
+      });
+      ensureStream();
+    }
+
+    function ensureStream() {
+      const streaming = state.phase === "streaming" || state.phase === "simpler-streaming";
+      if (!streaming) return;
+      const full = text();
+      if (reduceMotion || state.revealed >= full.length) {
+        state.revealed = full.length;
+        state.phase = "review";
+        clearInterval(timer);
+        timer = null;
+        render();
+        return;
+      }
+      if (timer) return;
+      timer = setInterval(() => {
+        state.revealed += 1;
+        const node = document.querySelector("[data-stream]");
+        if (node) node.textContent = text().slice(0, state.revealed);
+        if (state.revealed >= text().length) {
+          clearInterval(timer);
+          timer = null;
+          state.phase = "review";
+          render();
+        }
+      }, 18);
+    }
+
+    function ensureFeedback() {
+      const full = feedbackText();
+      if (!full) return;
+      if (reduceMotion) {
+        state.feedbackRevealed = full.length;
+        return;
+      }
+      state.feedbackRevealed = 0;
+      clearInterval(timer);
+      timer = setInterval(() => {
+        state.feedbackRevealed += 1;
+        const node = document.querySelector("[data-feedback]");
+        if (node) {
+          const label = state.quiz === "b" ? "Correct" : "Try again next time";
+          node.innerHTML = `<strong>${label}.</strong> ${full.slice(0, state.feedbackRevealed)}`;
+        }
+        if (state.feedbackRevealed >= full.length) {
+          clearInterval(timer);
+          timer = null;
+        }
+      }, 16);
+    }
+
+    document.querySelector(".preview-switch").addEventListener("click", (event) => {
+      const button = event.target.closest("button");
+      if (!button) return;
+      state.screen = button.dataset.screen;
+      render();
+    });
+
+    stage.addEventListener("click", (event) => {
+      const act = event.target.closest("[data-act]");
+      if (act && !act.disabled) {
+        if (act.dataset.act === "approve" && !state.approved) {
+          state.approved = true;
+          state.phase = "approved";
+          if (!state.awardedApproval) {
+            state.awardedApproval = true;
+            state.xp += 20;
+            state.credits += 2;
+          }
+          render();
+        }
+        if (act.dataset.act === "simpler" && state.explanation !== "simple") {
+          clearInterval(timer);
+          timer = null;
+          state.explanation = "simple";
+          state.revealed = 0;
+          state.phase = "simpler-streaming";
+          state.approved = false;
+          render();
+        }
+      }
+      const choice = event.target.closest("[data-choice]");
+      if (choice && !choice.disabled && state.approved && !state.quiz) {
+        state.quiz = choice.dataset.choice;
+        if (state.quiz === "b" && !state.awardedQuiz) {
+          state.awardedQuiz = true;
+          state.xp += 30;
+          state.credits += 5;
+        }
+        render();
+        ensureFeedback();
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,496 @@
+{
+  "title": "Artificial Intelligence Glossary",
+  "source": "https://hai.stanford.edu/ai-definitions",
+  "terms": [
+    {
+      "term": "Adversarial Distillation Attack",
+      "definition": "A training-time attack on knowledge distillation, where someone corrupts the transfer of behavior from a larger model to a smaller one.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-an-adversarial-distillation-attack"
+    },
+    {
+      "term": "AGI (Artificial General Intelligence)",
+      "definition": "An AI system that can learn, reason, and apply knowledge across many tasks at a human level or beyond, rather than one narrow job.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-agi-artificial-general-intelligence"
+    },
+    {
+      "term": "Agentic AI",
+      "definition": "Systems that pursue goals by planning steps, using tools, and adjusting their actions from feedback, with little ongoing human direction.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-agentic-ai"
+    },
+    {
+      "term": "AI Alignment",
+      "definition": "The work of making an AI system's objectives and behavior match human intentions, rules, and values.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-ai-alignment"
+    },
+    {
+      "term": "AI Benchmarks",
+      "definition": "Shared tests used to compare models on tasks such as question answering, vision, coding, or instruction following.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-ai-benchmarks"
+    },
+    {
+      "term": "AI Fluency",
+      "definition": "The skill of working with AI productively: knowing what it can and cannot do, checking its output, and using it responsibly.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-ai-fluency"
+    },
+    {
+      "term": "AI Safety",
+      "definition": "Research and practice aimed at making AI systems reliable and preventing them from causing harm, including in unexpected situations.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-ai-safety"
+    },
+    {
+      "term": "AI Tech Stack",
+      "definition": "The combined software, hardware, and compute used across the AI lifecycle, from data and training to deployment.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-an-ai-tech-stack"
+    },
+    {
+      "term": "AI Workflow",
+      "definition": "The full path of an AI application: prepare data, train a model, test it, deploy it, and keep it running.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-ai-workflow"
+    },
+    {
+      "term": "Algorithm",
+      "definition": "A finite sequence of instructions for solving a problem or completing a task.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-an-algorithm"
+    },
+    {
+      "term": "Algorithmic Monoculture",
+      "definition": "Many organizations relying on the same or very similar models, algorithms, or training data.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-algorithmic-monoculture"
+    },
+    {
+      "term": "Artificial Hivemind",
+      "definition": "A group of AI systems that share information and coordinate what they do.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-artificial-hivemind"
+    },
+    {
+      "term": "Artificial Intelligence (AI)",
+      "definition": "The field, named in 1955 by John McCarthy, concerned with building machines that can perform tasks that require intelligence.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-artificial-intelligence-ai"
+    },
+    {
+      "term": "Attention Mechanism",
+      "definition": "A neural-network method that lets a model weigh the parts of its input that matter most for the current output.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-attention-mechanism"
+    },
+    {
+      "term": "Backpropagation",
+      "definition": "The training procedure that sends a model's error backward through the network to update the connections that caused it.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-backpropagation"
+    },
+    {
+      "term": "Bayesian Networks",
+      "definition": "Graphs that show how variables influence one another, with probabilities on those relationships.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-are-bayesian-networks"
+    },
+    {
+      "term": "Bias (in AI)",
+      "definition": "Systematic skew in a system's results that advantages or disadvantages particular groups of people.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-bias-in-ai"
+    },
+    {
+      "term": "Big Data",
+      "definition": "Datasets so large or complex that ordinary data tools struggle to process them.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-big-data"
+    },
+    {
+      "term": "Chatbot",
+      "definition": "Software that holds a conversation with a person, usually by text or voice.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-chatbot"
+    },
+    {
+      "term": "Closed Source",
+      "definition": "Software whose code is kept private so the public cannot inspect, change, or reuse it. Also called proprietary software.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-closed-source"
+    },
+    {
+      "term": "Computer Vision",
+      "definition": "AI that interprets images and video, such as recognizing objects or scenes.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-computer-vision"
+    },
+    {
+      "term": "Context Window",
+      "definition": "How much input a model can consider at once while doing a task.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-context-window"
+    },
+    {
+      "term": "Contrastive Learning",
+      "definition": "Training by comparing similar and dissimilar examples so the model learns what belongs together.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-contrastive-learning"
+    },
+    {
+      "term": "Data Augmentation",
+      "definition": "Expanding a training set by making altered copies of existing examples instead of collecting new ones.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-data-augmentation"
+    },
+    {
+      "term": "Data Mining",
+      "definition": "Searching large datasets for patterns and trends with statistics and machine learning.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-data-mining"
+    },
+    {
+      "term": "Data Poisoning",
+      "definition": "An attack that inserts, changes, or mislabels training examples so the resulting model is corrupted or secretly steered.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-data-poisoning"
+    },
+    {
+      "term": "Decision Tree",
+      "definition": "A model that predicts by asking a series of yes-or-no questions about features until it reaches an answer.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-decision-tree"
+    },
+    {
+      "term": "Deep Learning",
+      "definition": "Machine learning that uses neural networks with many layers to learn complex patterns from data.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-deep-learning"
+    },
+    {
+      "term": "Diffusion Models",
+      "definition": "Generative models that create content, often images, by learning to remove noise that was added to data.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-are-diffusion-models"
+    },
+    {
+      "term": "Dimensionality Reduction",
+      "definition": "Simplifying data by using fewer variables while keeping the most important information.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-dimensionality-reduction"
+    },
+    {
+      "term": "Embeddings",
+      "definition": "Lists of numbers that represent items such as words or images so that similar items sit near each other.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-are-embeddings"
+    },
+    {
+      "term": "Ensemble Methods",
+      "definition": "Combining several models so the group's prediction is stronger than any single model's.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-are-ensemble-methods"
+    },
+    {
+      "term": "Ethical AI",
+      "definition": "Building and deploying AI so that it respects fairness, transparency, human values, and social well-being.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-ethical-ai"
+    },
+    {
+      "term": "Expert System",
+      "definition": "A program that applies a stored body of facts and if-then rules to reach conclusions in a narrow domain.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-an-expert-system"
+    },
+    {
+      "term": "Explainable AI (XAI)",
+      "definition": "Methods that make a model's decisions understandable to people instead of leaving them opaque.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-explainable-ai-xai"
+    },
+    {
+      "term": "Federated Learning",
+      "definition": "Training a shared model across many devices or servers while each party's data stays where it is.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-federated-learning"
+    },
+    {
+      "term": "Few-Shot Learning",
+      "definition": "Learning a new task from only a small number of examples.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-few-shot-learning"
+    },
+    {
+      "term": "Fine-tuning",
+      "definition": "Extra training of an already trained model on data for a particular task or domain.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-fine-tuning"
+    },
+    {
+      "term": "Foundation Model",
+      "definition": "A large model, often a transformer, trained on broad data so it can be adapted to many later tasks.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-are-foundation-models"
+    },
+    {
+      "term": "Frontier Model",
+      "definition": "A general-purpose model at or near the current leading edge of capability.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-frontier-model"
+    },
+    {
+      "term": "Generative AI",
+      "definition": "AI that creates new content such as text, images, audio, code, or video.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-generative-ai"
+    },
+    {
+      "term": "Generative Adversarial Networks (GANs)",
+      "definition": "A pair of networks, a generator and a discriminator, trained against each other so the generator produces realistic synthetic data.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-are-gans"
+    },
+    {
+      "term": "Generative Pre-Trained Transformer (GPT)",
+      "definition": "A family of large language models that use the transformer architecture to continue or write text from a prompt.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-gen-ai"
+    },
+    {
+      "term": "GPU (Graphics Processing Unit)",
+      "definition": "A chip built to do many calculations at once, first for graphics and now widely used to train and run AI models.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-gpu"
+    },
+    {
+      "term": "Hallucination (in AI)",
+      "definition": "Output that is false or made up but presented as if it were true.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-are-hallucinations"
+    },
+    {
+      "term": "Human-Centered AI",
+      "definition": "An approach that puts human needs, values, and well-being at the center of how AI is built and used.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-human-centered-ai"
+    },
+    {
+      "term": "Human-Computer Interaction (HCI)",
+      "definition": "The study and design of how people operate and interact with computer systems.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-hci"
+    },
+    {
+      "term": "Human-in-the-loop",
+      "definition": "Systems that keep a person in the process to review, correct, or approve what the AI does.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-human-in-the-loop"
+    },
+    {
+      "term": "Hyperparameter",
+      "definition": "A setting chosen before training starts, rather than learned from the data during training.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-hyperparameter"
+    },
+    {
+      "term": "Hyperscaler",
+      "definition": "A very large technology company that runs huge data-center networks and can expand cloud computing and storage quickly.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-hyperscaler"
+    },
+    {
+      "term": "Inference",
+      "definition": "Using a trained model to make a prediction or decision on new data.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-inference"
+    },
+    {
+      "term": "Interpretability",
+      "definition": "How well a person can follow the reasons behind a model's output.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-interpretability"
+    },
+    {
+      "term": "k-Nearest Neighbors (k-NN)",
+      "definition": "A simple method that classifies or predicts a point from the labels of the nearest examples in the training set.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-k-nn"
+    },
+    {
+      "term": "Knowledge Graph",
+      "definition": "A database that stores facts as entities linked by relationships.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-knowledge-graph"
+    },
+    {
+      "term": "Large Language Model (LLM)",
+      "definition": "A model trained on very large amounts of text so it can understand and produce language.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-llm"
+    },
+    {
+      "term": "Latent Space",
+      "definition": "A lower-dimensional representation in which the important patterns of complex data are encoded.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-latent-space"
+    },
+    {
+      "term": "LLMOps",
+      "definition": "The practices for deploying, monitoring, and maintaining applications built on large language models.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-are-llmops"
+    },
+    {
+      "term": "Loss Function",
+      "definition": "A score of how far a model's predictions are from the correct answers, used to guide training.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-loss-function"
+    },
+    {
+      "term": "Machine Learning (ML)",
+      "definition": "AI methods that learn patterns from data instead of relying only on hand-written rules.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-machine-learning"
+    },
+    {
+      "term": "Markov Chain",
+      "definition": "A model of a sequence in which the next step depends only on the current state, not on the earlier path.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-markov-chain"
+    },
+    {
+      "term": "MLOps",
+      "definition": "Practices that combine machine learning, software engineering, and operations so models can be deployed and maintained reliably.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-are-mlops"
+    },
+    {
+      "term": "Model",
+      "definition": "A mathematical or computational stand-in for a real process, used to find patterns or make predictions.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-model"
+    },
+    {
+      "term": "Model Drift",
+      "definition": "A drop in a model's accuracy over time because live data no longer matches the data it was trained on.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-model-drift"
+    },
+    {
+      "term": "Multimodal AI",
+      "definition": "Systems that can take in and produce more than one kind of data, such as text, images, audio, and video.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-multimodal-ai"
+    },
+    {
+      "term": "Natural Language Processing (NLP)",
+      "definition": "AI focused on understanding, interpreting, and generating human language.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-nlp"
+    },
+    {
+      "term": "Neural Network",
+      "definition": "A model made of connected layers of simple units, loosely inspired by neurons, that transform input into output.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-neural-network"
+    },
+    {
+      "term": "Optimization Algorithm",
+      "definition": "The method that updates a model's settings during training so its errors get smaller.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-an-optimization-algorithm"
+    },
+    {
+      "term": "Overfitting",
+      "definition": "When a model fits the training examples too closely, including noise, and then does poorly on new data.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-overfitting"
+    },
+    {
+      "term": "Open-Source Model",
+      "definition": "A model released with enough of its weights, code, data documentation, and tools that others can run, inspect, and modify it.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-an-open-source-model"
+    },
+    {
+      "term": "Open-Weight Model",
+      "definition": "A model whose learned weights are published so others can download and run it, even if other training materials stay private.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-an-open-weight-model"
+    },
+    {
+      "term": "Open Source",
+      "definition": "Software whose source code is available for people to view, use, and change.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-open-source"
+    },
+    {
+      "term": "Parameter",
+      "definition": "A value inside a model that is adjusted during training and then used at inference time.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-are-parameters"
+    },
+    {
+      "term": "Predictive Analytics",
+      "definition": "Using data and models to estimate what is likely to happen next.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-are-predictive-analytics"
+    },
+    {
+      "term": "Prompt Engineering",
+      "definition": "Writing and structuring the instructions given to a language model so the output is more useful.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-prompt-engineering"
+    },
+    {
+      "term": "Prompt Injection",
+      "definition": "An attack that hides instructions in input so a language model ignores its intended rules or task.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-prompt-injection"
+    },
+    {
+      "term": "RAG (Retrieval-Augmented Generation)",
+      "definition": "A method that retrieves outside information and gives it to a language model before the model writes an answer.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-rag"
+    },
+    {
+      "term": "Reasoning Model",
+      "definition": "A model built to work through harder problems in explicit intermediate steps rather than jumping straight to an answer.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-reasoning-model"
+    },
+    {
+      "term": "Reinforcement Learning",
+      "definition": "Learning by trying actions and getting rewards or penalties, then favoring actions that work better.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-reinforcement-learning"
+    },
+    {
+      "term": "Responsible AI",
+      "definition": "Principles and practices for developing and deploying AI in ways that are safe, fair, and accountable.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-responsible-ai"
+    },
+    {
+      "term": "Robotics",
+      "definition": "The field that designs machines to carry out physical tasks, often using engineering, computer science, and AI.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-are-robotics"
+    },
+    {
+      "term": "Spatial Intelligence",
+      "definition": "The ability to reason about 3D space: where things are, how they move, and how they interact.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-spatial-intelligence"
+    },
+    {
+      "term": "Self-Supervised Learning",
+      "definition": "Training in which the model creates its own learning signal from raw data, without human labels for every example.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-self-supervised-learning"
+    },
+    {
+      "term": "Semantic Analysis",
+      "definition": "Interpreting meaning in language from how words and phrases relate to each other.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-semantic-analysis"
+    },
+    {
+      "term": "Scaling Laws",
+      "definition": "Observed relationships that describe how model performance changes as size, data, and compute grow.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-are-scaling-laws"
+    },
+    {
+      "term": "Supervised Learning",
+      "definition": "Training on examples that already include the correct output.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-supervised-learning"
+    },
+    {
+      "term": "Synthetic Data",
+      "definition": "Data created by a program or simulation rather than collected from real events.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-synthetic-data"
+    },
+    {
+      "term": "Tensor",
+      "definition": "A multi-dimensional array of numbers used to store data and model values.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-tensor"
+    },
+    {
+      "term": "Tokenization",
+      "definition": "Splitting text into smaller pieces, called tokens, that a language model can process.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-tokenization"
+    },
+    {
+      "term": "Traditional AI",
+      "definition": "Earlier AI that depended on explicit rules and human-encoded knowledge rather than learning from data.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-traditional-ai"
+    },
+    {
+      "term": "Training Data",
+      "definition": "The examples used to teach a machine-learning model a task.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-training-data"
+    },
+    {
+      "term": "Transfer Learning",
+      "definition": "Starting from a model trained on one task and adapting it to a related task.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-transfer-learning"
+    },
+    {
+      "term": "Transformer",
+      "definition": "A neural architecture that uses attention to relate all parts of an input to each other, rather than reading them only in order.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-transformer"
+    },
+    {
+      "term": "Turing Test",
+      "definition": "Alan Turing's 1950 proposal for judging a machine by whether a person can tell its conversation apart from a human's.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-the-turing-test"
+    },
+    {
+      "term": "Unsupervised Learning",
+      "definition": "Training on data that has no supplied labels, so the model has to find structure by itself.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-unsupervised-learning"
+    },
+    {
+      "term": "Vector Database",
+      "definition": "A database built to store embeddings and search for the nearest ones quickly.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-vector-database"
+    },
+    {
+      "term": "Vision Transformer (ViT)",
+      "definition": "A transformer adapted to treat an image as a sequence of patches and analyze it.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-a-vit"
+    },
+    {
+      "term": "Weights",
+      "definition": "The learned numbers in a neural network that control how strongly units influence one another.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-are-weights"
+    },
+    {
+      "term": "Zero-Shot Learning",
+      "definition": "Performing a task or recognizing a category without having been trained on labeled examples of that specific task.",
+      "url": "https://hai.stanford.edu/ai-definitions/what-is-zero-shot-learning"
+    }
+  ]
+}
